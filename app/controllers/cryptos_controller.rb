@@ -6,7 +6,7 @@ class CryptosController < ApplicationController
   # GET /cryptos.json
   def index
     @cryptos = Crypto.all.where.not(name: nil, day: true)
-    url = HTTParty.get("https://api.coinmarketcap.com/v1/ticker/?start=1&limit=200")
+    url = HTTParty.get("https://api.coinmarketcap.com/v1/ticker/?start=0&limit=200")
     @result = JSON.parse(url.body)
     @investment = 3325.0
     total
