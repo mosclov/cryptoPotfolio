@@ -11,9 +11,9 @@
     <thead class="thead-default">
       <tr>
         <th>Coin</th>
+        <th>Total</th>
         <th>Value</th>
         <th>Qty</th>
-        <th>Total</th>
         <th>Change(24hr)</th>
         <th colspan="3"></th>
       </tr>
@@ -23,19 +23,21 @@
       <% @cryptos.each do |crypto| %>
       <tr>
         <td><%= crypto.name.titleize %> </td>
-        <td><%= crypto.qty %> </td>
         <% @result.each_with_index do |group,index| %>
           <% if crypto.name == group["id"]%>
             <td> <%= number_to_currency(group["price_usd"].to_f * crypto.qty) %></td>
             <td> $<%= group["price_usd"] %></td>
+            <td><%= crypto.qty %> </td>
             <td> <%= group["percent_change_24h"] %>%</td>
           <% elsif crypto.name == group["name"]%>
             <td> <%= number_to_currency(group["price_usd"].to_f * crypto.qty) %></td>
             <td> $<%= group["price_usd"] %></td>
+            <td><%= crypto.qty %> </td>
             <td> <%= group["percent_change_24h"] %>%</td>
           <% elsif crypto.name == group["name"].titleize %>
             <td> <%= number_to_currency(group["price_usd"].to_f * crypto.qty) %></td>
             <td> $<%= group["price_usd"] %></td>
+            <td><%= crypto.qty %> </td>
             <td> <%= group["percent_change_24h"] %>%</td>
           <% end %>
         <% end %>
