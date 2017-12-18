@@ -8,7 +8,7 @@ class CryptosController < ApplicationController
     @cryptos = Crypto.all.where.not(name: nil, day: true).order(:name)
     url = HTTParty.get("https://api.coinmarketcap.com/v1/ticker/?start=0&limit=1000")
     @result = JSON.parse(url.body)
-    @investment = 3325.0
+    @investment = 3825.0
     total
     @profit = @total - @investment
   end
