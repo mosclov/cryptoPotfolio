@@ -14,6 +14,7 @@
         <th>Total</th>
         <th>Value</th>
         <th>Qty</th>
+        <th>Change(1hr)</th>
         <th>Change(24hr)</th>
         <th>% of Inv</th>
         <th colspan="3"></th>
@@ -31,19 +32,22 @@
             <td> <%= @x %></td>
             <td> $<%= group["price_usd"] %></td>
             <td><%= crypto.qty %> </td>
-            <td> <%= group["percent_change_24h"] %>%</td>
+            <td class="<%= group["percent_change_1h"].to_f >= 0 ? "green" : "red" %>"> <%= group["percent_change_1h"] %>%</td>
+            <td class="<%= group["percent_change_1h"].to_f >= 0 ? "green" : "red" %>"> <%= group["percent_change_24h"] %>%</td>
             <td> <%= ((@y / @total) * 100).round(2) %>%</td>
           <% elsif crypto.name == group["name"]%>
             <td> <%= @x %></td>
             <td> $<%= group["price_usd"] %></td>
             <td><%= crypto.qty %> </td>
-            <td> <%= group["percent_change_24h"] %>%</td>
+            <td class="<%= group["percent_change_1h"].to_f >= 0 ? "green" : "red" %>"> <%= group["percent_change_1h"] %>%</td>
+            <td class="<%= group["percent_change_1h"].to_f >= 0 ? "green" : "red" %>"> <%= group["percent_change_24h"] %>%</td>
             <td> <%= ((@y / @total) * 100).round(2) %>%</td>
           <% elsif crypto.name == group["name"].titleize %>
             <td> <%= @x %></td>
             <td> $<%= group["price_usd"] %></td>
             <td><%= crypto.qty %> </td>
-            <td> <%= group["percent_change_24h"] %>%</td>
+            <td class="<%= group["percent_change_1h"].to_f >= 0 ? "green" : "red" %>"> <%= group["percent_change_1h"] %>%</td>
+            <td class="<%= group["percent_change_1h"].to_f >= 0 ? "green" : "red" %>"> <%= group["percent_change_24h"] %>%</td>
             <td> <%= ((@y / @total) * 100).round(2) %>%</td>
           <% end %>
         <% end %>
