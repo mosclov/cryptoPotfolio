@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Coins</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Total</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @coins.each do |coin| %>
+      <tr>
+        <td><%= coin.total %></td>
+        <td><%= link_to 'Show', coin %></td>
+        <td><%= link_to 'Edit', edit_coin_path(coin) %></td>
+        <td><%= link_to 'Destroy', coin, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Coin', new_coin_path %>

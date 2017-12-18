@@ -1,5 +1,7 @@
-module CryptosHelper
-  def total
+class Coin < ApplicationRecord
+
+  def self.total
+    investment = 3325.0
     cryptos = Crypto.all.where.not(name: nil, day: true)
     @price = []
     cryptos.each do |c|
@@ -15,7 +17,8 @@ module CryptosHelper
         end
       end
     end
-    @total = @price.sum
-    return @total
+    total = @price.sum
+    dbsave = Coin.find(1)
+    dbsave.update_attributes(profit: total)
   end
 end
