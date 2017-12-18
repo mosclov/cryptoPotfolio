@@ -1,7 +1,7 @@
 class Coin < ApplicationRecord
 
   def self.total
-    investment = 3325.0
+    investment = 3825.0
     cryptos = Crypto.all.where.not(name: nil, day: true)
     @price = []
     cryptos.each do |c|
