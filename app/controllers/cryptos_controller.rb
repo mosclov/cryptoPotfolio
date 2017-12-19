@@ -11,6 +11,8 @@ class CryptosController < ApplicationController
     @investment = 3825.0
     total
     @profit = @total - @investment
+    percentage = Change.last
+    @daily = percentage.percentage.to_s
   end
 
   # GET /cryptos/1
