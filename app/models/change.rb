@@ -25,7 +25,6 @@ class Change < ApplicationRecord
     yesterday = Change.last
     difference = @total - yesterday.past_day
     @percent = (difference / yesterday.past_day) * 100
-    binding.pry
     Change.create(past_day: @total, percentage: @percent)
   end
 
