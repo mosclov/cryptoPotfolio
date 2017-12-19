@@ -17,7 +17,7 @@ class Change < ApplicationRecord
         end
       end
     end
-    @total = @price.sum
+    @total = @price.sum + 520
   end
 
   def self.save_it
