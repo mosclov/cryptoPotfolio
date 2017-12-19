@@ -10,7 +10,7 @@ class CryptosController < ApplicationController
     @result = JSON.parse(url.body)
     @investment = 3825.0
     total
-    @profit = (@total + 520) - @investment
+    @profit = @total - @investment
     percentage = Change.last
     @daily = percentage.percentage.to_s
   end

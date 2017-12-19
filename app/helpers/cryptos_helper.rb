@@ -15,7 +15,7 @@ module CryptosHelper
         end
       end
     end
-    @total = @price.sum
+    @total = @price.sum + 520
     return @total
   end
 end
