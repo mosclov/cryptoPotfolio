@@ -13,6 +13,7 @@ class CryptosController < ApplicationController
     @profit = @total - @investment
     percentage = Change.last
     @daily = percentage.percentage.to_s
+    market
   end
 
   # GET /cryptos/1
@@ -67,6 +68,14 @@ class CryptosController < ApplicationController
       format.html { redirect_to cryptos_url, notice: 'Crypto was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def market
+    url = HTTParty.get("https://api.coinmarketcap.com/v1/global/")
+    result = JSON.parse(url.body)
+    @market = result["total_market_cap_usd"]
+    time = result["last_updated"]
+    @last_update = Time.at(time).strftime("%I:%M %p")
   end
 
   private
