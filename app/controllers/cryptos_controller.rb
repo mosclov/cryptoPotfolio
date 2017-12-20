@@ -6,14 +6,14 @@ class CryptosController < ApplicationController
   # GET /cryptos.json
   def index
     @cryptos = Crypto.all.where.not(name: nil, day: true).order(:name)
-    url = HTTParty.get("https://api.coinmarketcap.com/v1/ticker/?start=0&limit=250")
-    @result = JSON.parse(url.body)
+    link
     @investment = 3825.0
     total
     @profit = @total - @investment
     percentage = Change.last
     @daily = percentage.percentage.to_s
     market
+    @prospects = Prospect.all.order(:name)
   end
 
   # GET /cryptos/1

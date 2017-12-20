@@ -1,4 +1,10 @@
 module CryptosHelper
+
+  def link
+    url = HTTParty.get("https://api.coinmarketcap.com/v1/ticker/?start=0&limit=250")
+    @result = JSON.parse(url.body)
+  end
+  
   def total
     cryptos = Crypto.all.where.not(name: nil, day: true)
     @price = []
