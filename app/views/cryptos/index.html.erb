@@ -97,7 +97,7 @@
     <% @prospects.each do |prospect| %>
       <tr>
         <td><%= prospect.name.titleize %> </td>
-        <% @result.each_with_index do |group,index| %>
+        <% @result2.each_with_index do |group,index| %>
         <% if prospect.name == group["id"] || prospect.name == group["name"] ||  prospect.name == group["name"].titleize || prospect.name == group["symbol"] || prospect.name == group["symbol"].downcase%>
         <td> $<%= group["price_usd"] %></td>
         <td> $<%= group["price_btc"] %></td>
