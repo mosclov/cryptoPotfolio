@@ -1,10 +1,8 @@
 module CryptosHelper
 
   def link
-    url = HTTParty.get("https://api.coinmarketcap.com/v1/ticker/?start=0&limit=250")
-    @result = JSON.parse(url.body)
     url = HTTParty.get("https://api.coinmarketcap.com/v1/ticker/?start=0&limit=1250")
-    @result2 = JSON.parse(url.body)
+    @result = JSON.parse(url.body)
   end
 
   def total
