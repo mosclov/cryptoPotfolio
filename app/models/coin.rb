@@ -17,7 +17,7 @@ class Coin < ApplicationRecord
         end
       end
     end
-    total = @price.sum + 520
+    total = @price.sum
     dbsave = Coin.find(1)
     dbsave.update_attributes(profit: total)
   end
