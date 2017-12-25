@@ -9,7 +9,9 @@ class Coin < ApplicationRecord
       coin = JSON.parse(url.body)
       coin.each do |x|
         if x["id"] == c.name
-           @price << c.qty * x["price_usd"].to_f
+          @price << c.qty * x["price_usd"].to_f
+        elsif x["symbol"].downcase == c.name && !x["name"].include?("[Futures]")
+          @price << c.qty * x["price_usd"].to_f
         elsif x["name"] == c.name
           @price << c.qty * x["price_usd"].to_f
         elsif x["name"].titleize == c.name
