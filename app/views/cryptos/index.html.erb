@@ -39,7 +39,7 @@
         <% @result.each_with_index do |group,index| %>
           <% @x = number_to_currency(group["price_usd"].to_f * crypto.qty) %>
           <% @y = group["price_usd"].to_f * crypto.qty %>
-          <% if crypto.name == group["id"] || crypto.name == group["name"] ||  crypto.name == group["name"].titleize || crypto.name == group["symbol"] || crypto.name == group["symbol"].downcase%>
+          <% if crypto.name == group["id"] || crypto.name == group["name"] ||  crypto.name == group["name"].titleize || crypto.name == group["symbol"] || crypto.name == group["symbol"].downcase && !group["name"].include?("[Futures]")%>
             <td> <%= @x %></td>
             <td> $<%= group["price_usd"] %></td>
             <td><%= crypto.qty %> </td>
