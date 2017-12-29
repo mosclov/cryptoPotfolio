@@ -37,6 +37,7 @@ class CryptosController < ApplicationController
     @crypto = Crypto.new(crypto_params)
     respond_to do |format|
       if @crypto.save
+        Crypto.total
         format.html { redirect_to @crypto, notice: 'Crypto was successfully created.' }
         format.json { render :show, status: :created, location: @crypto }
       else
@@ -51,6 +52,7 @@ class CryptosController < ApplicationController
   def update
     respond_to do |format|
       if @crypto.update(crypto_params)
+        Crypto.total
         format.html { redirect_to @crypto, notice: 'Crypto was successfully updated.' }
         format.json { render :show, status: :ok, location: @crypto }
       else

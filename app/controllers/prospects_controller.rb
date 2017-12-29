@@ -24,6 +24,7 @@ class ProspectsController < ApplicationController
 
     respond_to do |format|
       if @prospect.save
+        Crypto.total
         format.html { redirect_to '/', notice: 'Prospect was successfully created.' }
         format.json { render :show, status: :created, location: @prospect }
       else
@@ -38,6 +39,7 @@ class ProspectsController < ApplicationController
   def update
     respond_to do |format|
       if @prospect.update(prospect_params)
+        Crypto.total
         format.html { redirect_to @prospect, notice: 'Prospect was successfully updated.' }
         format.json { render :show, status: :ok, location: @prospect }
       else
