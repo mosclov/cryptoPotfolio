@@ -36,19 +36,13 @@
       <% @cryptos.each do |crypto| %>
       <tr>
         <td><%= crypto.name.titleize %> </td>
-        <% @result.each_with_index do |group,index| %>
-          <% @x = number_to_currency(group["price_usd"].to_f * crypto.qty) %>
-          <% @y = group["price_usd"].to_f * crypto.qty %>
-          <% if crypto.name == group["id"] || crypto.name == group["name"] ||  crypto.name == group["name"].titleize || crypto.name == group["symbol"] || crypto.name == group["symbol"].downcase && !group["name"].include?("[Futures]")%>
-            <td> <%= @x %></td>
-            <td> $<%= group["price_usd"] %></td>
+            <td> <%= number_to_currency(crypto.total.to_f * crypto.qty) %></td>
+            <td> $<%= crypto.total %></td>
             <td><%= crypto.qty %> </td>
-            <td><%= group["market_cap_usd"] ? number_to_human(group["market_cap_usd"]) : "N/A" %> </td>
-            <td class="<%= group["percent_change_1h"].to_f >= 0 ? "green" : "red" %>"> <%= group["percent_change_1h"] ? group["percent_change_1h"] : "0.00" %>%</td>
-            <td class="<%= group["percent_change_24h"].to_f >= 0 ? "green" : "red" %>"> <%= group["percent_change_24h"] ? group["percent_change_24h"] : "0.00" %>%</td>
-            <td> <%= ((@y / @total) * 100).round(2) %>%</td>
-          <% end %>
-        <% end %>
+            <td><%= crypto.mc ? number_to_human(crypto.mc) : "N/A" %> </td>
+            <td class="<%= crypto.one.to_f >= 0 ? "green" : "red" %>"> <%= crypto.one ? crypto.one : "0.00" %>%</td>
+            <td class="<%= crypto.twenty_four.to_f >= 0 ? "green" : "red" %>"> <%= crypto.twenty_four ? crypto.twenty_four : "0.00" %>%</td>
+            <td> <%= crypto.pp %>%</td>
         <td><%= link_to 'Edit', edit_crypto_path(crypto) %></td>
         <td><%= link_to 'Delete', crypto, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
@@ -86,20 +80,16 @@
     <% @prospects.each do |prospect| %>
       <tr>
         <td><%= prospect.name.titleize %> </td>
-        <% @result.each_with_index do |group,index| %>
-        <% if prospect.name == group["id"] || prospect.name == group["name"] ||  prospect.name == group["name"].titleize || prospect.name == group["symbol"] || prospect.name == group["symbol"].downcase%>
-        <td> $<%= group["price_usd"] %></td>
-        <td> $<%= group["price_btc"] %></td>
-        <td><%= number_to_human(group["market_cap_usd"]) %> </td>
-        <td class="<%= group["percent_change_1h"].to_f >= 0 ? "green" : "red" %>"> <%= group["percent_change_1h"] %>%</td>
-        <td class="<%= group["percent_change_24h"].to_f >= 0 ? "green" : "red" %>"> <%= group["percent_change_24h"] %>%</td>
-
-        <% end %>
-        <% end %>
+        <td> $<%= prospect.value %></td>
+        <td> <%= prospect.btc %></td>
+        <td><%= number_to_human(prospect.mc) %> </td>
+        <td class="<%= prospect.one.to_f >= 0 ? "green" : "red" %>"> <%= prospect.one %>%</td>
+        <td class="<%= prospect.twenty_four.to_f >= 0 ? "green" : "red" %>"> <%= prospect.twenty_four %>%</td>
         <td><%= link_to 'Delete', prospect, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
 
 </div>

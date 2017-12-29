@@ -6,14 +6,14 @@ class CryptosController < ApplicationController
   # GET /cryptos.json
   def index
     @cryptos = Crypto.all.where.not(name: nil, day: true).order(:name)
-    link
-    @investment = 3825.0
-    total
-    @profit = @total - @investment
     percentage = Change.last
     @daily = percentage.percentage.to_s
-    market
     @prospects = Prospect.all.order(:name)
+    coin = Coin.find(1)
+    @total = coin.total
+    @profit = coin.profit
+    @market = coin.global
+    @last_update = Time.at(coin.time.to_i).strftime("%I:%M %p")
   end
 
   # GET /cryptos/1
@@ -68,14 +68,6 @@ class CryptosController < ApplicationController
       format.html { redirect_to cryptos_url, notice: 'Crypto was successfully destroyed.' }
       format.json { head :no_content }
     end
-  end
-
-  def market
-    url = HTTParty.get("https://api.coinmarketcap.com/v1/global/")
-    result = JSON.parse(url.body)
-    @market = result["total_market_cap_usd"]
-    time = result["last_updated"]
-    @last_update = Time.at(time).strftime("%I:%M %p")
   end
 
   private

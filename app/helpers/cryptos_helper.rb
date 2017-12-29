@@ -1,29 +1,3 @@
 module CryptosHelper
 
-  def link
-    url = HTTParty.get("https://api.coinmarketcap.com/v1/ticker/?start=0&limit=1250")
-    @result = JSON.parse(url.body)
-  end
-
-  def total
-    cryptos = Crypto.all.where.not(name: nil, day: true)
-    @price = []
-    cryptos.each do |c|
-      url = HTTParty.get("https://api.coinmarketcap.com/v1/ticker/?start=0&limit=1250")
-      coin = JSON.parse(url.body)
-      coin.each do |x|
-        if x["id"] == c.name
-          @price << c.qty * x["price_usd"].to_f
-        elsif x["symbol"].downcase == c.name && !x["name"].include?("[Futures]")
-          @price << c.qty * x["price_usd"].to_f
-        elsif x["name"] == c.name
-          @price << c.qty * x["price_usd"].to_f
-        elsif x["name"].titleize == c.name
-          @price << c.qty * x["price_usd"].to_f
-        end
-      end
-    end
-    @total = @price.sum
-    return @total
-  end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171220223112) do
+ActiveRecord::Schema.define(version: 20171229084156) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,8 @@ ActiveRecord::Schema.define(version: 20171220223112) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.decimal "profit", precision: 8, scale: 2
+    t.string "global"
+    t.string "time"
   end
 
   create_table "cryptos", force: :cascade do |t|
@@ -39,12 +41,26 @@ ActiveRecord::Schema.define(version: 20171220223112) do
     t.datetime "updated_at", null: false
     t.decimal "yesterday", precision: 8, scale: 2
     t.boolean "day", default: false
+    t.string "total", default: "0"
+    t.string "value", default: "0"
+    t.string "mc", default: "0"
+    t.string "one", default: "0"
+    t.string "twenty_four", default: "0"
+    t.string "pp", default: "0"
+    t.string "global", default: "0"
   end
 
   create_table "prospects", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "usd"
+    t.string "btc"
+    t.string "mc"
+    t.string "one"
+    t.string "twenty_four"
+    t.string "price"
+    t.string "value"
   end
 
 end

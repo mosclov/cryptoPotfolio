@@ -1,3 +1,3 @@
 class CoinSerializer < ActiveModel::Serializer
-  attributes :id, :profit
+  attributes :id, :total
 end
