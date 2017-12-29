@@ -37,7 +37,7 @@
       <tr>
         <td><%= crypto.name.titleize %> </td>
             <td> <%= number_to_currency(crypto.total) %></td>
-            <td> <%= number_to_currency(crypto.value) %></td>
+            <td> $<%= crypto.value %></td>
             <td><%= crypto.qty %> </td>
             <td><%= crypto.mc ? number_to_human(crypto.mc) : "N/A" %> </td>
             <td class="<%= crypto.one.to_f >= 0 ? "green" : "red" %>"> <%= crypto.one ? crypto.one : "0.00" %>%</td>
