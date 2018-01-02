@@ -62,7 +62,7 @@ class Crypto < ApplicationRecord
   end
 
   def self.total
-    investment = 3825.0
+    investment = 5000.0
     crypto = Crypto.all.where.not(name: nil, day: true)
     prospect = Prospect.all
     market
