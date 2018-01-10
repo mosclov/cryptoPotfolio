@@ -62,7 +62,6 @@ class Crypto < ApplicationRecord
   end
 
   def self.total
-    investment = 5000.0
     crypto = Crypto.all.where.not(name: nil, day: true)
     prospect = Prospect.all
     market
@@ -94,7 +93,7 @@ class Crypto < ApplicationRecord
     end
 
     total = @price.sum
-    profit = total - investment
+    profit = total
     pp_coin(crypto, total)
     dbsave = Coin.find(1)
     dbsave.update_attributes(total: total, profit: profit)
