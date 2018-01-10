@@ -1,7 +1,6 @@
 class Crypto < ApplicationRecord
   before_save :downcase_fields
   before_save :remove_comma
-  after_save :update_coin
   validates :name, presence: true
   validates :qty, presence: true
 
@@ -54,19 +53,6 @@ class Crypto < ApplicationRecord
     @result = JSON.parse(url.body)
   end
 
-  def update_coin
-    url = HTTParty.get("https://api.coinmarketcap.com/v1/ticker/?start=0&limit=1250")
-    @result = JSON.parse(url.body)
-    @result.each_with_index do |group,index|
-      if (self.name == group["id"] || self.name == group["name"] ||  self.name == group["name"].titleize || self.name == group["symbol"] || self.name == group["symbol"].downcase && !group["name"].include?("[Futures]"))
-        self.total_coin(self, group["price_usd"])
-        self.value_coin(self, group["price_usd"])
-        self.mc_coin(self, group["market_cap_usd"])
-        self.one_coin(self, group["percent_change_1h"])
-        self.twenty_four_coin(self, group["percent_change_24h"])
-      end
-    end
-  end
 
   def self.market
     url = HTTParty.get("https://api.coinmarketcap.com/v1/global/")
