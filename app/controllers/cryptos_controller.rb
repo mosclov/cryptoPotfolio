@@ -38,7 +38,7 @@ class CryptosController < ApplicationController
     respond_to do |format|
       if @crypto.save
         Crypto.total
-        format.html { redirect_to @crypto, notice: 'Crypto was successfully created.' }
+        format.html { redirect_to cryptos_url, notice: 'Crypto was successfully created.' }
         format.json { render :show, status: :created, location: @crypto }
       else
         format.html { render :new }
@@ -53,7 +53,7 @@ class CryptosController < ApplicationController
     respond_to do |format|
       if @crypto.update(crypto_params)
         Crypto.total
-        format.html { redirect_to @crypto, notice: 'Crypto was successfully updated.' }
+        format.html { redirect_to cryptos_url, notice: 'Crypto was successfully updated.' }
         format.json { render :show, status: :ok, location: @crypto }
       else
         format.html { render :edit }
