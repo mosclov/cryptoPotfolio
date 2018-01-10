@@ -4,7 +4,6 @@ class Crypto < ApplicationRecord
   validates :name, presence: true
   validates :qty, presence: true
 
-
   def downcase_fields
     self.name.downcase! if self.name?
   end
@@ -100,4 +99,7 @@ class Crypto < ApplicationRecord
     dbsave = Coin.find(1)
     dbsave.update_attributes(total: total, profit: profit)
   end
+
+
+
 end
