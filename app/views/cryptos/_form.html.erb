@@ -20,6 +20,10 @@
     <%= f.label :qty %><br>
     <%= f.text_area :qty %>
   </div>
+  <div class="field">
+    <%= f.label "Location" %><br>
+    <%= f.select :exchange, ["", "Binance", "Bittrex", "Coinbase Alex", "Coinbase Fede", "EtherDelta", "HitBtc", "Kucoin", "Ledger", "Other"] %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>

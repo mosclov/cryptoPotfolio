@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171229090145) do
+ActiveRecord::Schema.define(version: 20180120185215) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,9 @@ ActiveRecord::Schema.define(version: 20171229090145) do
     t.decimal "profit", precision: 8, scale: 2
     t.string "global"
     t.string "time"
+    t.bigint "user_id"
+    t.string "investment", default: "0"
+    t.index ["user_id"], name: "index_coins_on_user_id"
   end
 
   create_table "cryptos", force: :cascade do |t|
@@ -48,6 +51,21 @@ ActiveRecord::Schema.define(version: 20171229090145) do
     t.string "twenty_four", default: "0"
     t.string "pp", default: "0"
     t.string "global", default: "0"
+    t.bigint "user_id"
+    t.string "exchange"
+    t.string "sym"
+    t.string "image_url"
+    t.string "seven_day"
+    t.string "new_exchange"
+    t.string "location"
+    t.index ["user_id"], name: "index_cryptos_on_user_id"
+  end
+
+  create_table "globals", force: :cascade do |t|
+    t.string "mc"
+    t.string "last_update"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "prospects", force: :cascade do |t|
@@ -61,6 +79,34 @@ ActiveRecord::Schema.define(version: 20171229090145) do
     t.string "twenty_four"
     t.string "price"
     t.string "value"
+    t.string "image_url"
+    t.string "sym"
+    t.bigint "user_id"
+    t.string "seven_day"
+    t.index ["user_id"], name: "index_prospects_on_user_id"
   end
 
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet "current_sign_in_ip"
+    t.inet "last_sign_in_ip"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "investment", default: "0"
+    t.string "portfolio"
+    t.boolean "admin", default: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  add_foreign_key "coins", "users"
+  add_foreign_key "cryptos", "users"
+  add_foreign_key "prospects", "users"
 end
