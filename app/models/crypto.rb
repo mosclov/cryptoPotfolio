@@ -94,7 +94,7 @@ class Crypto < ApplicationRecord
       end
     end
 
-    total = @price.sum + investment
+    total = @price.sum
     profit = total - investment
     pp_coin(crypto, total)
     dbsave = Coin.find(1)
