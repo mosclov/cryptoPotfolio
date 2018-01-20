@@ -1,7 +1,7 @@
 class Change < ApplicationRecord
 
   def self.total
-    investment = 3825.0
+    investment = 12360
     cryptos = Crypto.all.where.not(name: nil, day: true)
     @price = []
     cryptos.each do |c|
@@ -17,7 +17,7 @@ class Change < ApplicationRecord
         end
       end
     end
-    @total = @price.sum
+    @total = @price.sum - investment
   end
 
   def self.save_it

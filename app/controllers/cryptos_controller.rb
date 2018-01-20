@@ -10,6 +10,7 @@ class CryptosController < ApplicationController
     @daily = percentage.percentage.to_s
     @prospects = Prospect.all.order(:name)
     coin = Coin.find(1)
+    @investment = "$12,360"
     @total = coin.total
     @profit = coin.profit
     @market = coin.global

@@ -13,6 +13,10 @@
     <h3 style="float: right">Total: <%= number_to_currency(@total) %></h3>
   </div>
   <div style="clear: both">
+    <h4 style="float: left">Investment: <%= @investment %></h4>
+    <h4 style="float: right">Profit: <%= number_to_currency(@profit) %></h4>
+  </div>
+  <div style="clear: both">
     <h5 style="float: left">Last Day: <%= @daily %>%</h5>
     <h5 style="float: right">Last Updated: <%= @last_update %></h5>
   </div>
